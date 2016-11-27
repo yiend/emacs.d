@@ -1,4 +1,7 @@
 ; basic.el
+(set 'inhibit-startup-message t)
+(set 'backup-directory-alist '((".*" . "~/.emacs.d/backup/")))
+(set 'auto-save-file-name-transforms '((".*" "~/.emacs.d/backup/" t)))
 
 ; font & color-theme
 (set-default-font "Menlo-13")
@@ -8,10 +11,9 @@
 (enable-theme 'solarized)
 
 ; code style
-(global-linum-mode t)
-(setq indent-tabs-mode t)
-(setq default-tab-width 4)
-(setq tab-width 4)
+(setq-default tab-width 4)
+(setq c-default-style "linux"
+  c-basic-offset 4)
 
 ; frame | gui
 (menu-bar-mode t)
