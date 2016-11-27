@@ -26,4 +26,15 @@
 (require 'evil)
 (evil-mode t)
 
+; ycmd & company-ycmd
+(require 'ycmd)
+(set-variable 'ycmd-server-command '("python" "/opt/ycmd/ycmd"))
+(set-variable 'ycmd-global-config "~/.ycm_extra_conf.py")
+(add-hook 'c-mode-hook 'ycmd-mode)
+(add-hook 'c-mode-hook 'company-mode)
+(add-hook 'c++-mode-hook 'ycmd-mode)
+(add-hook 'c++-mode-hook 'company-mode)
+(require 'company-ycmd)
+(company-ycmd-setup)
+
 (provide 'init-basic)
