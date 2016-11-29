@@ -24,8 +24,8 @@
   (set-frame-size (selected-frame) 108 34))
 
 ; basic style
-(global-linum-mode t)
 (setq-default tab-width 4)
+(setq-default indent-tabs-mode nil)
 (setq backward-delete-char-untabify-method 'hungry)
 
 ; emacs-lisp style
@@ -48,6 +48,11 @@
 ; evil mode
 (require 'evil)
 (evil-mode t)
+(require 'evil-leader)
+(global-evil-leader-mode)
+(evil-leader/set-leader ",")
+(evil-leader/set-key "jd" 'ycmd-goto-declaration)
+(evil-leader/set-key "ji" 'ycmd-goto-imprecise)
 
 ; ycmd & company & company-ycmd & flycheck-ycmd
 (require 'ycmd)
@@ -63,5 +68,10 @@
 (company-ycmd-setup)
 (require 'flycheck-ycmd)
 (flycheck-ycmd-setup)
+
+; pinyin
+(require 'chinese-pyim)
+(set 'default-input-method "chinese-pyim")
+(global-set-key (kbd "C-M-SPC") 'toggle-input-method)
 
 (provide 'init-basic)
