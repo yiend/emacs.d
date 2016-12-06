@@ -4,6 +4,7 @@
 (set 'inhibit-startup-message t)
 (set 'backup-directory-alist '((".*" . "~/.emacs.d/backup/")))
 (set 'auto-save-file-name-transforms '((".*" "~/.emacs.d/backup/" t)))
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ; font & color-theme
 (if (equal system-type 'darwin)
@@ -42,8 +43,11 @@
   "custom c-mode"
   (set 'indent-tabs-mode t)
   (set 'c-default-style "linux")
-  (set 'c-basic-offset 4))
+  (set 'c-basic-offset 4)
+  (set 'outline-blank-line 1)
+  (outline-minor-mode))
 (add-hook 'c-mode-hook 'custom-c-mode)
+(add-hook 'c++-mode-hook 'custom-c-mode)
 
 ; evil mode
 (require 'evil)
