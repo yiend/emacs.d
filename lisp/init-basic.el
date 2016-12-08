@@ -45,7 +45,8 @@
   (set 'c-default-style "linux")
   (set 'c-basic-offset 4)
   (set 'outline-blank-line 1)
-  (outline-minor-mode))
+  (outline-minor-mode)
+  (linum-mode))
 (add-hook 'c-mode-hook 'custom-c-mode)
 (add-hook 'c++-mode-hook 'custom-c-mode)
 
