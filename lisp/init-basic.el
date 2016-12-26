@@ -44,8 +44,9 @@
   (set 'indent-tabs-mode t)
   (set 'c-default-style "linux")
   (set 'c-basic-offset 4)
-  (set 'outline-blank-line 1)
-  (outline-minor-mode)
+  (hs-minor-mode)
+  (set 'hs-hide-comments-when-hiding-all 1)
+  (set 'hs-allow-nesting 1)
   (linum-mode))
 (add-hook 'c-mode-hook 'custom-c-mode)
 (add-hook 'c++-mode-hook 'custom-c-mode)
@@ -58,6 +59,7 @@
 (evil-leader/set-leader ",")
 (evil-leader/set-key "jd" 'ycmd-goto-declaration)
 (evil-leader/set-key "ji" 'ycmd-goto-imprecise)
+(evil-leader/set-key "e" 'speedbar)
 
 ; ycmd & company & company-ycmd & flycheck-ycmd
 (require 'ycmd)
