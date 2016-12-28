@@ -81,4 +81,9 @@
 (set 'default-input-method "chinese-pyim")
 (global-set-key (kbd "C-M-SPC") 'toggle-input-method)
 
+; org-mode
+(global-set-key (kbd "C-c a") 'org-agenda)
+(set 'org-todo-keywords
+     '((sequence "TODO" "TODAY" "DONE")))
+
 (provide 'init-basic)
