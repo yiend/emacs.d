@@ -50,6 +50,7 @@
   (linum-mode))
 (add-hook 'c-mode-hook 'custom-c-mode)
 (add-hook 'c++-mode-hook 'custom-c-mode)
+(add-hook 'sh-mode-hook 'custom-c-mode)
 
 ; evil mode
 (require 'evil)
