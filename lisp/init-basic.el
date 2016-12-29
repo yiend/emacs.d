@@ -47,6 +47,7 @@
   (hs-minor-mode)
   (set 'hs-hide-comments-when-hiding-all 1)
   (set 'hs-allow-nesting 1)
+  (modify-syntax-entry ?_ "w")
   (linum-mode))
 (add-hook 'c-mode-hook 'custom-c-mode)
 (add-hook 'c++-mode-hook 'custom-c-mode)
