@@ -53,12 +53,17 @@
 (add-hook 'c++-mode-hook 'custom-c-mode)
 (add-hook 'sh-mode-hook 'custom-c-mode)
 
+; org-mode hook
+(add-hook 'org-mode-hook
+          (lambda ()
+            (modify-syntax-entry ?_ "w")))
+
 ; evil mode
 (require 'evil)
 (evil-mode t)
 (require 'evil-leader)
 (global-evil-leader-mode)
-(evil-leader/set-leader ",")
+(evil-leader/set-leader "<SPC>")
 (evil-leader/set-key "jd" 'ycmd-goto-declaration)
 (evil-leader/set-key "ji" 'ycmd-goto-imprecise)
 (evil-leader/set-key "e" 'speedbar)
@@ -77,15 +82,22 @@
 (company-ycmd-setup)
 (require 'flycheck-ycmd)
 (flycheck-ycmd-setup)
+(global-set-key (kbd "C-SPC") 'company-complete)
 
 ; pinyin
 (require 'chinese-pyim)
 (set 'default-input-method "chinese-pyim")
 (global-set-key (kbd "C-M-SPC") 'toggle-input-method)
 
+; gbk
+(defun gbk ()
+  "revert buffer coding to chinese-gbk"
+  (interactive)
+  (revert-buffer-with-coding-system 'chinese-gbk))
+
 ; org-mode
 (global-set-key (kbd "C-c a") 'org-agenda)
-(set 'org-todo-keywords
-     '((sequence "TODO" "TODAY" "DONE")))
+(set 'org-todo-keywords '((sequence "TODO" "TODAY" "DONE")))
+(set 'org-agenda-files '("~/mind/freedom_as_autonomy/activity.org"))
 
 (provide 'init-basic)

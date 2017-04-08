@@ -1,5 +1,6 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(set 'org-agenda-files '("~/mind/freedom_as_autonomy/activity.org"))
 (package-initialize)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -16,6 +17,37 @@
  ;; If there is more than one, they won't work right.
  )
 
+;; install any packages in yiend-packages, if they are not installed already
+(set 'yiend-packages '(color-theme
+                       color-theme-solarized
+                       evil
+                       evil-leader
+                       ycmd
+                       company-ycmd
+                       flycheck-ycmd
+                       ))
+
+(unless package-archive-contents
+  (package-refresh-contents))
+
+(dolist (pkg yiend-packages)
+  (when (and (not (package-installed-p pkg))
+             (assoc pkg package-archive-contents))
+    (package-install pkg)))
+
+;(let (refreshed)
+;  (when (not package-archive-contents)
+;    (package-refresh-contents)
+;    (setq refreshed t))
+;  (dolist (pkg yiend-packages)
+;    (when (and (not (package-installed-p pkg))
+;               (assoc pkg package-archive-contents))
+;      (unless refreshed
+;        (package-refresh-contents)
+;        (setq refreshed t))
+;      (package-install pkg))))
+
+;; load lisp/init-basic.el
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 (require 'init-basic)
 
