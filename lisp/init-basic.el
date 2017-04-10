@@ -67,6 +67,8 @@
 (evil-leader/set-key "jd" 'ycmd-goto-declaration)
 (evil-leader/set-key "ji" 'ycmd-goto-imprecise)
 (evil-leader/set-key "e" 'speedbar)
+(define-key evil-normal-state-map (kbd "gb") 'next-buffer)
+(define-key evil-normal-state-map (kbd "gB") 'previous-buffer)
 
 ; ycmd & company & company-ycmd & flycheck-ycmd
 (require 'ycmd)
