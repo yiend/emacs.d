@@ -34,6 +34,7 @@
 ;(add-hook 'emacs-lisp-mode-hook (lambda () (setq comment-column 0)))
 (defun custom-emacs-lisp-mode ()
   "custom emacs-lisp-mode"
+  (evil-mode t)
   (set 'indent-tabs-mode nil)
   (set 'comment-column 0))
 (add-hook 'emacs-lisp-mode-hook 'custom-emacs-lisp-mode)
@@ -41,6 +42,9 @@
 ; c style
 (defun custom-c-mode ()
   "custom c-mode"
+  (evil-mode t)
+  (require 'projectile)
+  (projectile-mode t)
   (set 'indent-tabs-mode t)
   (set 'c-default-style "linux")
   (set 'c-basic-offset 4)
@@ -53,14 +57,15 @@
 (add-hook 'c++-mode-hook 'custom-c-mode)
 (add-hook 'sh-mode-hook 'custom-c-mode)
 
-; org-mode hook
+; org-mode style
 (add-hook 'org-mode-hook
-          (lambda ()
-            (modify-syntax-entry ?_ "w")))
+          (lambda () (evil-mode t)))
+(add-hook 'org-mode-hook
+          (lambda () (modify-syntax-entry ?_ "w")))
 
 ; evil mode
 (require 'evil)
-(evil-mode t)
+(evil-mode 0)
 (require 'evil-leader)
 (global-evil-leader-mode)
 (evil-leader/set-leader "<SPC>")
@@ -97,7 +102,7 @@
   (interactive)
   (revert-buffer-with-coding-system 'chinese-gbk))
 
-; org-mode
+; org agenda
 (global-set-key (kbd "C-c a") 'org-agenda)
 (set 'org-todo-keywords '((sequence "TODO" "TODAY" "DONE")))
 (set 'org-agenda-files '("~/mind/freedom_as_autonomy/activity.org"))
