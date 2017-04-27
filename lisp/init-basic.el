@@ -30,7 +30,9 @@
 (when window-system
   (set-frame-size (selected-frame) 120 38))
 
-; projectile & speedbar
+; helm & projectile & speedbar
+(require 'helm)
+(global-set-key (kbd "M-x") 'helm-M-x)
 (require 'projectile)
 (projectile-mode t)
 (set 'projectile-enable-caching t)
@@ -61,6 +63,7 @@
 (set 'org-agenda-files '("~/mind/freedom_as_autonomy/activity.org"))
 
 ; term mode
+(require 'multi-term)
 (evil-set-initial-state 'term-mode 'emacs)
 
 ; basic style

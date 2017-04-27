@@ -9,7 +9,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (magit flycheck-ycmd company-ycmd ycmd multi-term evil-leader evil projectile color-theme-solarized color-theme ##))))
+    (magit flycheck-ycmd company-ycmd ycmd multi-term evil-leader evil projectile helm color-theme-solarized color-theme ##))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -20,6 +20,7 @@
 ;; install any packages in yiend-packages, if they are not installed already
 (set 'yiend-packages '(color-theme
                        color-theme-solarized
+                       helm
                        projectile
                        evil
                        evil-leader
