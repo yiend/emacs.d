@@ -5,6 +5,8 @@
 (set 'backup-directory-alist '((".*" . "~/.emacs.d/backup/")))
 (set 'auto-save-file-name-transforms '((".*" "~/.emacs.d/backup/" t)))
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+(if (get-buffer "*scratch*")
+    (kill-buffer "*scratch*"))
 
 ; font & color-theme
 (if (equal system-type 'darwin)
@@ -22,7 +24,30 @@
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 (when window-system
-  (set-frame-size (selected-frame) 108 34))
+  (set-frame-size (selected-frame) 120 38))
+
+; projectile & speedbar
+(require 'projectile)
+(projectile-mode t)
+(set 'projectile-enable-caching t)
+(require 'sr-speedbar)
+;(set 'speedbar-use-images nil)
+(set 'sr-speedbar-right-side nil)
+(set 'sr-speedbar-width 28)
+(sr-speedbar-open)
+(global-set-key (kbd "C-c C-t") 'sr-speedbar-toggle)
+
+; evil mode
+(require 'evil)
+(evil-mode t)
+(global-set-key (kbd "C-c C-e") 'evil-mode)
+(require 'evil-leader)
+(global-evil-leader-mode)
+(evil-leader/set-leader "<SPC>")
+(evil-leader/set-key "jd" 'ycmd-goto-definition)
+(evil-leader/set-key "jc" 'ycmd-goto-declaration)
+(define-key evil-normal-state-map (kbd "gb") 'next-buffer)
+(define-key evil-normal-state-map (kbd "gB") 'previous-buffer)
 
 ; basic style
 (setq-default tab-width 4)
@@ -34,7 +59,6 @@
 ;(add-hook 'emacs-lisp-mode-hook (lambda () (setq comment-column 0)))
 (defun custom-emacs-lisp-mode ()
   "custom emacs-lisp-mode"
-  (evil-mode t)
   (set 'indent-tabs-mode nil)
   (set 'comment-column 0))
 (add-hook 'emacs-lisp-mode-hook 'custom-emacs-lisp-mode)
@@ -42,9 +66,6 @@
 ; c style
 (defun custom-c-mode ()
   "custom c-mode"
-  (evil-mode t)
-  (require 'projectile)
-  (projectile-mode t)
   (set 'indent-tabs-mode t)
   (set 'c-default-style "linux")
   (set 'c-basic-offset 4)
@@ -59,21 +80,12 @@
 
 ; org-mode style
 (add-hook 'org-mode-hook
-          (lambda () (evil-mode t)))
-(add-hook 'org-mode-hook
           (lambda () (modify-syntax-entry ?_ "w")))
 
-; evil mode
-(require 'evil)
-(evil-mode 0)
-(require 'evil-leader)
-(global-evil-leader-mode)
-(evil-leader/set-leader "<SPC>")
-(evil-leader/set-key "jd" 'ycmd-goto-declaration)
-(evil-leader/set-key "ji" 'ycmd-goto-imprecise)
-(evil-leader/set-key "e" 'speedbar)
-(define-key evil-normal-state-map (kbd "gb") 'next-buffer)
-(define-key evil-normal-state-map (kbd "gB") 'previous-buffer)
+; org-mode agenda
+(global-set-key (kbd "C-c a") 'org-agenda)
+(set 'org-todo-keywords '((sequence "TODO" "TODAY" "DONE")))
+(set 'org-agenda-files '("~/mind/freedom_as_autonomy/activity.org"))
 
 ; ycmd & company & company-ycmd & flycheck-ycmd
 (require 'ycmd)
@@ -101,10 +113,5 @@
   "revert buffer coding to chinese-gbk"
   (interactive)
   (revert-buffer-with-coding-system 'chinese-gbk))
-
-; org agenda
-(global-set-key (kbd "C-c a") 'org-agenda)
-(set 'org-todo-keywords '((sequence "TODO" "TODAY" "DONE")))
-(set 'org-agenda-files '("~/mind/freedom_as_autonomy/activity.org"))
 
 (provide 'init-basic)
