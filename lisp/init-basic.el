@@ -8,6 +8,10 @@
 (if (get-buffer "*scratch*")
     (kill-buffer "*scratch*"))
 
+; osx meta
+(set 'mac-option-modifier 'super)
+(set 'mac-command-modifier 'meta)
+
 ; font & color-theme
 (if (equal system-type 'darwin)
     (set-frame-font "Menlo-13")
@@ -49,6 +53,16 @@
 (define-key evil-normal-state-map (kbd "gb") 'next-buffer)
 (define-key evil-normal-state-map (kbd "gB") 'previous-buffer)
 
+; org mode
+(add-hook 'org-mode-hook
+          (lambda () (modify-syntax-entry ?_ "w")))
+(global-set-key (kbd "C-c a") 'org-agenda)
+(set 'org-todo-keywords '((sequence "TODO" "TODAY" "DONE")))
+(set 'org-agenda-files '("~/mind/freedom_as_autonomy/activity.org"))
+
+; term mode
+(evil-set-initial-state 'term-mode 'emacs)
+
 ; basic style
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
@@ -78,15 +92,6 @@
 (add-hook 'c++-mode-hook 'custom-c-mode)
 (add-hook 'sh-mode-hook 'custom-c-mode)
 
-; org-mode style
-(add-hook 'org-mode-hook
-          (lambda () (modify-syntax-entry ?_ "w")))
-
-; org-mode agenda
-(global-set-key (kbd "C-c a") 'org-agenda)
-(set 'org-todo-keywords '((sequence "TODO" "TODAY" "DONE")))
-(set 'org-agenda-files '("~/mind/freedom_as_autonomy/activity.org"))
-
 ; ycmd & company & company-ycmd & flycheck-ycmd
 (require 'ycmd)
 (set-variable 'ycmd-server-command '("python" "/opt/ycmd/ycmd"))
@@ -104,9 +109,9 @@
 (global-set-key (kbd "C-SPC") 'company-complete)
 
 ; pinyin
-(require 'chinese-pyim)
-(set 'default-input-method "chinese-pyim")
-(global-set-key (kbd "C-M-SPC") 'toggle-input-method)
+;(require 'chinese-pyim)
+;(set 'default-input-method "chinese-pyim")
+;(global-set-key (kbd "C-M-SPC") 'toggle-input-method)
 
 ; gbk
 (defun gbk ()

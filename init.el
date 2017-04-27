@@ -9,7 +9,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (projectile chinese-pyim-greatdict chinese-pyim magit evil-leader evil color-theme-solarized ##))))
+    (magit flycheck-ycmd company-ycmd ycmd multi-term evil-leader evil projectile color-theme-solarized color-theme ##))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -20,12 +20,14 @@
 ;; install any packages in yiend-packages, if they are not installed already
 (set 'yiend-packages '(color-theme
                        color-theme-solarized
+                       projectile
                        evil
                        evil-leader
+                       multi-term
                        ycmd
                        company-ycmd
                        flycheck-ycmd
-                       projectile
+                       magit
                        ))
 
 (unless package-archive-contents
