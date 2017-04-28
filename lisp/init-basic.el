@@ -65,6 +65,10 @@
 ; term mode
 (require 'multi-term)
 (evil-set-initial-state 'term-mode 'emacs)
+(delete* "<ESC>" term-unbind-key-list :test 'equal)
+(delete* '("C-p" . previous-line) term-bind-key-alist :test 'equal)
+(delete* '("C-n" . next-line) term-bind-key-alist :test 'equal)
+(delete* '("C-r" . isearch-backward) term-bind-key-alist :test 'equal)
 
 ; basic style
 (setq-default tab-width 4)
