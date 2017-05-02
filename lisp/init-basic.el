@@ -8,6 +8,14 @@
 (if (get-buffer "*scratch*")
     (kill-buffer "*scratch*"))
 
+; coding-system
+(prefer-coding-system 'chinese-gbk-dos)
+(prefer-coding-system 'utf-8-unix)
+(defun gbk ()
+  "revert buffer coding to chinese-gbk"
+  (interactive)
+  (revert-buffer-with-coding-system 'chinese-gbk-dos))
+
 ; osx meta
 (set 'mac-option-modifier 'super)
 (set 'mac-command-modifier 'meta)
@@ -119,11 +127,5 @@
 ;(require 'chinese-pyim)
 ;(set 'default-input-method "chinese-pyim")
 ;(global-set-key (kbd "C-M-SPC") 'toggle-input-method)
-
-; gbk
-(defun gbk ()
-  "revert buffer coding to chinese-gbk"
-  (interactive)
-  (revert-buffer-with-coding-system 'chinese-gbk))
 
 (provide 'init-basic)
