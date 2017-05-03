@@ -48,13 +48,13 @@
 ;(set 'speedbar-use-images nil)
 (set 'sr-speedbar-right-side nil)
 (set 'sr-speedbar-width 28)
-(sr-speedbar-open)
-(global-set-key (kbd "C-c C-t") 'sr-speedbar-toggle)
+;(sr-speedbar-open)
+(global-set-key (kbd "C-c t") 'sr-speedbar-toggle)
 
 ; evil mode
 (require 'evil)
 (evil-mode t)
-(global-set-key (kbd "C-c C-e") 'evil-mode)
+(global-set-key (kbd "C-c e") 'evil-mode)
 (require 'evil-leader)
 (global-evil-leader-mode)
 (evil-leader/set-leader "<SPC>")
@@ -77,6 +77,7 @@
 (delete* '("C-p" . previous-line) term-bind-key-alist :test 'equal)
 (delete* '("C-n" . next-line) term-bind-key-alist :test 'equal)
 (delete* '("C-r" . isearch-backward) term-bind-key-alist :test 'equal)
+(global-set-key (kbd "C-c m") 'multi-term)
 
 ; basic style
 (setq-default tab-width 4)
@@ -122,6 +123,9 @@
 (require 'flycheck-ycmd)
 (flycheck-ycmd-setup)
 (global-set-key (kbd "C-SPC") 'company-complete)
+
+; gdb
+(set 'gdb-show-main t)
 
 ; pinyin
 ;(require 'chinese-pyim)
