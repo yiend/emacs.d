@@ -55,11 +55,11 @@
 (require 'evil)
 (evil-mode t)
 (global-set-key (kbd "C-c e") 'evil-mode)
+(define-key evil-normal-state-map (kbd "M-.") 'xref-find-definitions)
+(define-key evil-normal-state-map "\C-]" "\M-.")
 (require 'evil-leader)
 (global-evil-leader-mode)
 (evil-leader/set-leader "<SPC>")
-(evil-leader/set-key "jd" 'ycmd-goto-definition)
-(evil-leader/set-key "jc" 'ycmd-goto-declaration)
 (define-key evil-normal-state-map (kbd "gb") 'next-buffer)
 (define-key evil-normal-state-map (kbd "gB") 'previous-buffer)
 
