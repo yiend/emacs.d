@@ -79,6 +79,7 @@
 (delete* '("C-n" . next-line) term-bind-key-alist :test 'equal)
 (delete* '("C-r" . isearch-backward) term-bind-key-alist :test 'equal)
 (global-set-key (kbd "C-c m") 'multi-term)
+(multi-term)
 
 ; basic style
 (setq-default tab-width 4)
