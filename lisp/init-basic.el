@@ -57,11 +57,13 @@
 (global-set-key (kbd "C-c e") 'evil-mode)
 (define-key evil-normal-state-map (kbd "M-.") 'xref-find-definitions)
 (define-key evil-normal-state-map "\C-]" "\M-.")
+(define-key evil-normal-state-map (kbd "gb") 'next-buffer)
+(define-key evil-normal-state-map (kbd "gB") 'previous-buffer)
 (require 'evil-leader)
 (global-evil-leader-mode)
 (evil-leader/set-leader "<SPC>")
-(define-key evil-normal-state-map (kbd "gb") 'next-buffer)
-(define-key evil-normal-state-map (kbd "gB") 'previous-buffer)
+(evil-leader/set-key "jd" 'ycmd-goto-declaration)
+(evil-leader/set-key "jD" 'ycmd-goto-definition)
 
 ; org mode
 (add-hook 'org-mode-hook
@@ -101,7 +103,7 @@
   (set 'indent-tabs-mode t)
   (set 'c-default-style "linux")
   (set 'c-basic-offset 4)
-  ;(linum-mode)
+  (linum-mode)
   (hs-minor-mode)
   (set 'hs-hide-comments-when-hiding-all 1)
   (set 'hs-allow-nesting 1)
@@ -119,7 +121,11 @@
 (add-hook 'c-mode-hook 'company-mode)
 (add-hook 'c++-mode-hook 'ycmd-mode)
 (add-hook 'c++-mode-hook 'company-mode)
-(set-variable 'company-idle-delay 0)
+(set-variable 'company-idle-delay 0.1)
+(eval-after-load 'company
+  '(progn
+     (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
+     (define-key company-active-map (kbd "<tab>") 'company-complete-common-or-cycle)))
 (require 'company-ycmd)
 (company-ycmd-setup)
 (require 'flycheck-ycmd)
