@@ -124,8 +124,11 @@
 (set-variable 'company-idle-delay 0.1)
 (eval-after-load 'company
   '(progn
-     (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
-     (define-key company-active-map (kbd "<tab>") 'company-complete-common-or-cycle)))
+     (define-key company-active-map (kbd "C-n") 'company-select-next)
+     (define-key company-active-map (kbd "C-p") 'company-select-previous)
+     (define-key company-active-map (kbd "<tab>") 'company-select-next)
+     (define-key company-active-map (kbd "<backtab>") 'company-select-previous)
+     ))
 (require 'company-ycmd)
 (company-ycmd-setup)
 (require 'flycheck-ycmd)
