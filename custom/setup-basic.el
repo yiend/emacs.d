@@ -62,7 +62,7 @@
 ; evil mode
 (use-package evil
   :init
-  (global-set-key (kbd "C-c i e") 'evil-mode)
+  (global-set-key (kbd "C-c m e") 'evil-mode)
   :config
   (evil-mode t)
   (define-key evil-normal-state-map (kbd "M-.") 'xref-find-definitions)
@@ -75,7 +75,7 @@
 ; term mode
 (use-package multi-term
   :init
-  (global-set-key (kbd "C-c i t") 'multi-term)
+  (global-set-key (kbd "C-c m t") 'multi-term)
   :config
   (evil-set-initial-state 'term-mode 'emacs)
   (define-key term-raw-map (kbd "M-x") 'helm-M-x)
