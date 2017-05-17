@@ -28,8 +28,8 @@
 (menu-bar-mode t)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
-(when window-system
-  (set-frame-size (selected-frame) 120 38))
+;(when window-system
+;  (set-frame-size (selected-frame) 120 38))
 
 ; font
 (if (equal system-type 'darwin)
@@ -61,12 +61,9 @@
 
 ; evil mode
 (use-package evil
-  :init
-  (global-set-key (kbd "C-c m e") 'evil-mode)
   :config
   (evil-mode t)
-  (define-key evil-normal-state-map (kbd "M-.") 'helm-gtags-dwim)
-  (define-key evil-normal-state-map "\C-]" "\M-."))
+  (define-key evil-normal-state-map (kbd "M-.") nil))
 (use-package evil-leader
   :config
   (evil-leader/set-leader "<SPC>")
@@ -74,11 +71,9 @@
 
 ; term mode
 (use-package multi-term
-  :init
-  (global-set-key (kbd "C-c m t") 'multi-term)
   :config
   (evil-set-initial-state 'term-mode 'emacs)
-  (define-key term-raw-map (kbd "M-x") 'helm-M-x)
+  (define-key term-raw-map (kbd "M-x") nil)
   (delete* "<ESC>" term-unbind-key-list :test 'equal)
   (delete* '("C-p" . previous-line) term-bind-key-alist :test 'equal)
   (delete* '("C-n" . next-line) term-bind-key-alist :test 'equal)
@@ -86,13 +81,23 @@
   (multi-term))
 
 ; ggtags
-(use-package ggtags)
+(use-package ggtags
+  :defer t)
 
 ; company mode
 (use-package company
+  :defer t
+  :init
+  (setq company-idle-delay 0.2
+        company-minimum-prefix-length 2
+        company-require-match nil)
   :config
-  (set-variable 'company-idle-delay 0.1)
-  (set-variable 'company-auto-complete nil)
+  (define-key company-active-map (kbd "RET") 'company-complete-selection)
+  (define-key company-active-map (kbd "<tab>") 'company-complete-common-or-cycle)
+  (define-key company-active-map (kbd "S-<tab>")
+    (lambda ()
+      (interactive)
+      (company-complete-common-or-cycle -1)))
   (global-company-mode t))
 
 ; projectile
