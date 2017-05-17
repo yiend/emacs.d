@@ -65,7 +65,7 @@
   (global-set-key (kbd "C-c m e") 'evil-mode)
   :config
   (evil-mode t)
-  (define-key evil-normal-state-map (kbd "M-.") 'xref-find-definitions)
+  (define-key evil-normal-state-map (kbd "M-.") 'helm-gtags-dwim)
   (define-key evil-normal-state-map "\C-]" "\M-."))
 (use-package evil-leader
   :config
@@ -84,6 +84,9 @@
   (delete* '("C-n" . next-line) term-bind-key-alist :test 'equal)
   (delete* '("C-r" . isearch-backward) term-bind-key-alist :test 'equal)
   (multi-term))
+
+; ggtags
+(use-package ggtags)
 
 ; company mode
 (use-package company

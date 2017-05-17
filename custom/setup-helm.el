@@ -15,4 +15,6 @@
   (setq projectile-indexing-method 'alien))
   (helm-projectile-on)
 
+(use-package helm-gtags)
+
 (provide 'setup-helm)
